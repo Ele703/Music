@@ -50,3 +50,23 @@ public class Album {
     @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Musica> musicas = new ArrayList<>();
 }
+package com.seuprojeto.musicaapi.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+public class Musica {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String titulo;
+    private int duracaoSegundos;
+
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    private Album album;
+}
+
