@@ -20,3 +20,8 @@ public class Artista {
     @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Album> albuns = new ArrayList<>();
 }
+package com.seuprojeto.musicaapi.model;
+
+public enum TipoArtista {
+    SOLO, DUPLA, BANDA
+}
