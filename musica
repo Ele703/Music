@@ -25,3 +25,28 @@ package com.seuprojeto.musicaapi.model;
 public enum TipoArtista {
     SOLO, DUPLA, BANDA
 }
+package com.seuprojeto.musicaapi.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+public class Album {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String titulo;
+    private int ano;
+
+    @ManyToOne
+    @JoinColumn(name = "artista_id")
+    private Artista artista;
+
+    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Musica> musicas = new ArrayList<>();
+}
