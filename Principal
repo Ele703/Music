@@ -1,0 +1,28 @@
+package com.seuprojeto.musicaapi.controller;
+
+import com.seuprojeto.musicaapi.model.Artista;
+import com.seuprojeto.musicaapi.repository.ArtistaRepository;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/artistas")
+public class ArtistaController {
+
+    private final ArtistaRepository repository;
+
+    public ArtistaController(ArtistaRepository repository) {
+        this.repository = repository;
+    }
+
+    @GetMapping
+    public List<Artista> listar() {
+        return repository.findAll();
+    }
+
+    @PostMapping
+    public Artista cadastrar(@RequestBody Artista artista) {
+        return repository.save(artista);
+    }
+}
